@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ShoppingBag, Search, Menu, X } from 'lucide-react';
+import { ShoppingBag, Search, Menu, X, User } from 'lucide-react';
 import { useCart } from '@/hooks/use-cart';
 import { Badge } from '@/components/ui/badge';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -55,6 +55,13 @@ export const Navbar = () => {
               <Search className="h-5 w-5" />
             </Button>
             
+            {/* Account */}
+            <Button variant="ghost" size="icon" asChild>
+              <Link to="/auth" className="relative">
+                <User className="h-5 w-5" />
+              </Link>
+            </Button>
+            
             {/* Cart */}
             <Button variant="ghost" size="icon" asChild>
               <Link to="/cart" className="relative">
@@ -103,6 +110,13 @@ export const Navbar = () => {
                 {category.name}
               </Link>
             ))}
+            <Link 
+              to="/auth" 
+              className="block py-2 px-4 hover:bg-accent/10 rounded-md"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Sign In / Sign Up
+            </Link>
           </div>
         )}
       </div>
