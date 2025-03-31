@@ -48,7 +48,7 @@ export const SignUpForm = () => {
       email: '',
       password: '',
       confirmPassword: '',
-      terms: false,
+      terms: true, // Changed from false to true to match the schema requirement
     },
   });
 
