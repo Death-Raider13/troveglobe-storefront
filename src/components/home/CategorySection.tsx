@@ -27,6 +27,24 @@ const categories: Category[] = [
     name: "Accessories",
     image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80",
     path: "/category/accessories"
+  },
+  {
+    id: "crochet-bags",
+    name: "Crochet Bags and Purses",
+    image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?ixlib=rb-4.0.3&auto=format&fit=crop&w=876&q=80",
+    path: "/category/crochet-bags"
+  },
+  {
+    id: "confectionaries",
+    name: "Confectionaries",
+    image: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80",
+    path: "/category/confectionaries"
+  },
+  {
+    id: "personalized-clothing",
+    name: "Personalized Clothing",
+    image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80",
+    path: "/category/personalized-clothing"
   }
 ];
 
@@ -34,7 +52,7 @@ export const CategorySection = () => {
   return (
     <section className="container mx-auto px-4 py-12">
       <h2 className="text-3xl font-bold mb-8 text-center">Shop by Category</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {categories.map((category) => (
           <Link 
             key={category.id} 
