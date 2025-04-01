@@ -44,6 +44,10 @@ const ProductPage = () => {
     ? product.price * (1 - product.discount / 100) 
     : product.price;
   
+  const formatPrice = (price: number) => {
+    return `₦${price.toLocaleString('en-NG')}`;
+  };
+  
   return (
     <Layout>
       <div className="container mx-auto px-4 py-12">
@@ -64,14 +68,14 @@ const ProductPage = () => {
             <div className="flex items-center mb-4">
               {product.discount > 0 ? (
                 <>
-                  <span className="text-2xl font-bold text-destructive">${actualPrice.toFixed(2)}</span>
-                  <span className="ml-2 text-muted-foreground line-through">${product.price.toFixed(2)}</span>
+                  <span className="text-2xl font-bold text-destructive">{formatPrice(actualPrice)}</span>
+                  <span className="ml-2 text-muted-foreground line-through">{formatPrice(product.price)}</span>
                   <span className="ml-2 bg-destructive/10 text-destructive px-2 py-1 text-xs font-semibold rounded">
                     {product.discount}% OFF
                   </span>
                 </>
               ) : (
-                <span className="text-2xl font-bold">${product.price.toFixed(2)}</span>
+                <span className="text-2xl font-bold">{formatPrice(product.price)}</span>
               )}
             </div>
             

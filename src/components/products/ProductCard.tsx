@@ -24,6 +24,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     });
   };
   
+  const formatPrice = (price: number) => {
+    return `₦${price.toLocaleString('en-NG')}`;
+  };
+  
   return (
     <div className="product-card group">
       <Link to={`/product/${product.id}`} className="block">
@@ -45,11 +49,11 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           <div className="flex items-center mt-1">
             {product.discount > 0 ? (
               <>
-                <span className="font-bold text-destructive">${product.price * (1 - product.discount / 100)}</span>
-                <span className="ml-2 text-muted-foreground line-through text-sm">${product.price}</span>
+                <span className="font-bold text-destructive">{formatPrice(product.price * (1 - product.discount / 100))}</span>
+                <span className="ml-2 text-muted-foreground line-through text-sm">{formatPrice(product.price)}</span>
               </>
             ) : (
-              <span className="font-bold">${product.price}</span>
+              <span className="font-bold">{formatPrice(product.price)}</span>
             )}
           </div>
           
