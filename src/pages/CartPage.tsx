@@ -1,13 +1,16 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout } from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/use-cart';
 import { Link } from 'react-router-dom';
-import { Trash2, Plus, Minus, ShoppingBag } from 'lucide-react';
+import { Trash2, Plus, Minus, ShoppingBag, CreditCard, Wallet, Truck, Store } from 'lucide-react';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
 
 const CartPage = () => {
   const { items, removeItem, updateQuantity, clearCart, subtotal } = useCart();
+  const [deliveryMethod, setDeliveryMethod] = useState('delivery');
   
   if (items.length === 0) {
     return (
@@ -145,6 +148,42 @@ const CartPage = () => {
             <div className="border rounded-lg p-6">
               <h2 className="text-xl font-bold mb-4">Order Summary</h2>
               
+              {/* Delivery Method Selection */}
+              <div className="mb-6">
+                <h3 className="font-medium mb-3">Delivery Method</h3>
+                <RadioGroup 
+                  value={deliveryMethod} 
+                  onValueChange={setDeliveryMethod}
+                  className="gap-3"
+                >
+                  <div className="flex items-center space-x-2 border rounded-md p-3 hover:bg-muted/50 cursor-pointer">
+                    <RadioGroupItem value="delivery" id="delivery" />
+                    <Label htmlFor="delivery" className="flex items-center cursor-pointer">
+                      <Truck className="h-4 w-4 mr-2" />
+                      <div>
+                        <div>Home Delivery</div>
+                        <div className="text-xs text-muted-foreground">
+                          Delivery within 24-48 hours
+                        </div>
+                      </div>
+                    </Label>
+                  </div>
+                  
+                  <div className="flex items-center space-x-2 border rounded-md p-3 hover:bg-muted/50 cursor-pointer">
+                    <RadioGroupItem value="pickup" id="pickup" />
+                    <Label htmlFor="pickup" className="flex items-center cursor-pointer">
+                      <Store className="h-4 w-4 mr-2" />
+                      <div>
+                        <div>Store Pickup</div>
+                        <div className="text-xs text-muted-foreground">
+                          Ready for pickup in 2 hours
+                        </div>
+                      </div>
+                    </Label>
+                  </div>
+                </RadioGroup>
+              </div>
+              
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Subtotal</span>
@@ -166,13 +205,20 @@ const CartPage = () => {
                 Proceed to Checkout
               </Button>
               
-              <div className="mt-6 text-sm text-muted-foreground">
-                <p className="mb-2">We accept:</p>
-                <div className="flex space-x-2">
-                  <div className="bg-muted rounded p-1 w-12 h-8"></div>
-                  <div className="bg-muted rounded p-1 w-12 h-8"></div>
-                  <div className="bg-muted rounded p-1 w-12 h-8"></div>
-                  <div className="bg-muted rounded p-1 w-12 h-8"></div>
+              <div className="mt-6">
+                <p className="mb-2 text-sm text-muted-foreground">We accept:</p>
+                <div className="flex space-x-3">
+                  <div className="flex items-center justify-center bg-muted rounded p-2 h-10">
+                    <CreditCard className="h-5 w-5" />
+                  </div>
+                  <div className="flex items-center justify-center bg-muted rounded p-2 h-10">
+                    <Wallet className="h-5 w-5" />
+                    <span className="ml-1 text-xs font-medium">Transfer</span>
+                  </div>
+                  <div className="flex items-center justify-center bg-muted rounded p-2 h-10">
+                    <Wallet className="h-5 w-5" />
+                    <span className="ml-1 text-xs font-medium">On-spot</span>
+                  </div>
                 </div>
               </div>
             </div>
