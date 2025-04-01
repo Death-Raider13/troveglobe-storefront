@@ -12,7 +12,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Company Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">ḰƝἿҬҬἝƉ__ƓὋȖȒṂἝҬ</h3>
+            <h3 className="text-lg font-semibold mb-4">KNITTED GOURMET</h3>
             <p className="text-primary-foreground/80 text-sm">
               Discover the latest trends and timeless classics in our curated collection.
             </p>
@@ -98,7 +98,7 @@ export const Footer = () => {
         </div>
         
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-sm text-primary-foreground/60">
-          <p>© {year} ḰƝἿҬҬἝƉ__ƓὋȖȒṂἝҬ. All rights reserved.</p>
+          <p>© {year} KNITTED GOURMET. All rights reserved.</p>
         </div>
       </div>
     </footer>
