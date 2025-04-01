@@ -35,7 +35,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           <img 
             src={product.image} 
             alt={product.name} 
-            className="product-card-img"
+            className="product-card-img h-64 w-full object-cover rounded-t-md"
           />
           {product.discount > 0 && (
             <div className="absolute top-2 left-2 bg-destructive text-destructive-foreground px-2 py-1 text-xs font-semibold rounded">

@@ -9,7 +9,7 @@ export const products: Product[] = [
     description: "A timeless wardrobe essential with African print details. This premium cotton t-shirt offers both comfort and style for everyday wear.",
     price: 12500,
     discount: 0,
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "men",
     inStock: true
   },
@@ -19,7 +19,7 @@ export const products: Product[] = [
     description: "Elegant three-piece Nigerian traditional attire with intricate embroidery, perfect for special occasions.",
     price: 45000,
     discount: 10,
-    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1552252860-c8cabb28c36a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "men",
     inStock: true
   },
@@ -29,7 +29,7 @@ export const products: Product[] = [
     description: "Vibrant and colorful dashiki shirt made from high-quality fabric with traditional African patterns.",
     price: 18500,
     discount: 0,
-    image: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1596938345240-5b8eec0a2714?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "men",
     inStock: true
   },
@@ -41,7 +41,7 @@ export const products: Product[] = [
     description: "A lightweight floral Ankara dress perfect for warm Nigerian weather. Features a flattering silhouette and breathable fabric.",
     price: 22000,
     discount: 15,
-    image: "https://images.unsplash.com/photo-1582533561751-ef6f6ab93a2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1534126511673-b6899657816a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "women",
     inStock: true
   },
@@ -51,7 +51,7 @@ export const products: Product[] = [
     description: "Beautiful two-piece wrapper and blouse set made with premium Ankara fabric, suitable for ceremonies and festivities.",
     price: 28000,
     discount: 0,
-    image: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "women",
     inStock: true
   },
@@ -61,7 +61,7 @@ export const products: Product[] = [
     description: "Elegant lace gown with intricate details, perfect for Nigerian traditional weddings and special occasions.",
     price: 65000,
     discount: 20,
-    image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "women",
     inStock: true
   },
@@ -73,7 +73,7 @@ export const products: Product[] = [
     description: "Handcrafted beaded necklace with matching earrings, made by local artisans using traditional techniques.",
     price: 15000,
     discount: 0,
-    image: "https://images.unsplash.com/photo-1591561954555-607968c989ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1573227895226-4b8e7052aad4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "accessories",
     inStock: true
   },
@@ -83,7 +83,7 @@ export const products: Product[] = [
     description: "Vibrant headwrap made from high-quality fabric, perfect for completing your traditional Nigerian outfit.",
     price: 8500,
     discount: 0,
-    image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1607503873903-c5e95f80d7b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "accessories",
     inStock: true
   },
@@ -93,7 +93,7 @@ export const products: Product[] = [
     description: "Traditional waist beads with cultural significance, handmade by skilled artisans.",
     price: 5000,
     discount: 10,
-    image: "https://images.unsplash.com/photo-1613843447376-8861cd0c397f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1617038260896-64c508109d82?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "accessories",
     inStock: true
   },
@@ -105,7 +105,7 @@ export const products: Product[] = [
     description: "Durable and stylish raffia tote bag, handwoven by Nigerian artisans using traditional techniques.",
     price: 12000,
     discount: 0,
-    image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1591561954555-607968c989ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "crochet-bags",
     inStock: true
   },
@@ -115,7 +115,7 @@ export const products: Product[] = [
     description: "Elegant beaded clutch purse for special occasions, featuring intricate handmade beadwork.",
     price: 18000,
     discount: 15,
-    image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "crochet-bags",
     inStock: true
   },
@@ -125,7 +125,7 @@ export const products: Product[] = [
     description: "Lightweight and durable crochet backpack, perfect for casual outings and shopping trips.",
     price: 9500,
     discount: 0,
-    image: "https://images.unsplash.com/photo-1594223274512-ad4b5a3d0271?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1575484183144-abafcf3c4cba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "crochet-bags",
     inStock: true
   },
@@ -137,7 +137,7 @@ export const products: Product[] = [
     description: "Crispy and sweet traditional Nigerian snack, made with premium ingredients and packaged in a beautiful box.",
     price: 3500,
     discount: 0,
-    image: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1558304970-abd589baebe5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "confectionaries",
     inStock: true
   },
@@ -147,7 +147,7 @@ export const products: Product[] = [
     description: "Delicious homemade coconut candy, a sweet Nigerian treat that's perfect for sharing.",
     price: 2000,
     discount: 10,
-    image: "https://images.unsplash.com/photo-1582716401301-b2407dc7563d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1541600383005-565c632cf14b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "confectionaries",
     inStock: true
   },
@@ -157,7 +157,7 @@ export const products: Product[] = [
     description: "Ready-to-fry mix for making traditional Nigerian puff puff, a delicious sweet fried dough snack.",
     price: 4000,
     discount: 0,
-    image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1604324541429-8e9ccbd8f319?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "confectionaries",
     inStock: true
   },
@@ -169,7 +169,7 @@ export const products: Product[] = [
     description: "Personalized Ankara shirt with your name or text embroidered, perfect for special events or gifting.",
     price: 15000,
     discount: 0,
-    image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "personalized-clothing",
     inStock: true
   },
@@ -179,7 +179,7 @@ export const products: Product[] = [
     description: "Set of matching Ankara outfits for the whole family, can be customized with names or special messages.",
     price: 65000,
     discount: 20,
-    image: "https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "personalized-clothing",
     inStock: true
   },
@@ -189,7 +189,7 @@ export const products: Product[] = [
     description: "High-quality cap with your initials beautifully embroidered, a personalized accessory for any outfit.",
     price: 7500,
     discount: 10,
-    image: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1534215754734-18e55d13e346?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "personalized-clothing",
     inStock: true
   }
