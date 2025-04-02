@@ -9,6 +9,18 @@ import { Badge } from '@/components/ui/badge';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useOrderTracking } from '@/hooks/use-order-tracking';
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuGroup,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+} from "@/components/ui/dropdown-menu";
+import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
@@ -65,75 +77,64 @@ export const Navbar = () => {
             ḰƝἿҬҬἝƉ__ƓὋȖȒṂἝҬ
           </Link>
           
-          {/* Desktop Navigation */}
+          {/* Categories Dropdown - Desktop */}
           {!isMobile && (
-            <div className="hidden space-x-2 md:flex items-center">
-              <NavigationMenu>
-                <NavigationMenuList>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger>Women</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="grid gap-3 p-4 w-[200px]">
+            <div className="hidden md:flex items-center">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="flex items-center gap-1">
+                    Categories <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>Shop By Category</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuGroup>
+                    <DropdownMenuSub>
+                      <DropdownMenuSubTrigger>
+                        <span>Women</span>
+                      </DropdownMenuSubTrigger>
+                      <DropdownMenuSubContent className="w-48">
                         {subcategories.women.map((item) => (
-                          <li key={item.name}>
-                            <NavigationMenuLink asChild>
-                              <Link 
-                                to={item.path}
-                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                              >
-                                <div className="text-sm font-medium leading-none">{item.name}</div>
-                              </Link>
-                            </NavigationMenuLink>
-                          </li>
+                          <DropdownMenuItem key={item.name} asChild>
+                            <Link to={item.path}>{item.name}</Link>
+                          </DropdownMenuItem>
                         ))}
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger>Men</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="grid gap-3 p-4 w-[200px]">
+                      </DropdownMenuSubContent>
+                    </DropdownMenuSub>
+                    
+                    <DropdownMenuSub>
+                      <DropdownMenuSubTrigger>
+                        <span>Men</span>
+                      </DropdownMenuSubTrigger>
+                      <DropdownMenuSubContent className="w-48">
                         {subcategories.men.map((item) => (
-                          <li key={item.name}>
-                            <NavigationMenuLink asChild>
-                              <Link 
-                                to={item.path}
-                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                              >
-                                <div className="text-sm font-medium leading-none">{item.name}</div>
-                              </Link>
-                            </NavigationMenuLink>
-                          </li>
+                          <DropdownMenuItem key={item.name} asChild>
+                            <Link to={item.path}>{item.name}</Link>
+                          </DropdownMenuItem>
                         ))}
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger>Accessories</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="grid gap-3 p-4 w-[200px]">
+                      </DropdownMenuSubContent>
+                    </DropdownMenuSub>
+                    
+                    <DropdownMenuSub>
+                      <DropdownMenuSubTrigger>
+                        <span>Accessories</span>
+                      </DropdownMenuSubTrigger>
+                      <DropdownMenuSubContent className="w-48">
                         {subcategories.accessories.map((item) => (
-                          <li key={item.name}>
-                            <NavigationMenuLink asChild>
-                              <Link 
-                                to={item.path}
-                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                              >
-                                <div className="text-sm font-medium leading-none">{item.name}</div>
-                              </Link>
-                            </NavigationMenuLink>
-                          </li>
+                          <DropdownMenuItem key={item.name} asChild>
+                            <Link to={item.path}>{item.name}</Link>
+                          </DropdownMenuItem>
                         ))}
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <Link to="/category/sale" className="nav-link">
-                      Sale
-                    </Link>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
+                      </DropdownMenuSubContent>
+                    </DropdownMenuSub>
+                    
+                    <DropdownMenuItem asChild>
+                      <Link to="/category/sale">Sale</Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           )}
           
