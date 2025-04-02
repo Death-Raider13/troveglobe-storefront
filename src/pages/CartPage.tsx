@@ -55,7 +55,11 @@ const CartPage = () => {
     });
     
     // Navigate to the order tracking page
-    navigate(`/track?code=${newOrder.trackingCode}`);
+    if (newOrder && newOrder.trackingCode) {
+      navigate(`/track?code=${newOrder.trackingCode}`);
+    } else {
+      navigate('/track'); // Fallback if tracking code is not available
+    }
   };
   
   if (items.length === 0 && checkoutStep === 'cart') {

@@ -33,7 +33,7 @@ export type Order = {
 interface OrderTrackingContextType {
   orders: Order[];
   currentOrder: Order | null;
-  addOrder: (order: Omit<Order, 'id' | 'orderDate' | 'status' | 'trackingCode'>) => void;
+  addOrder: (order: Omit<Order, 'id' | 'orderDate' | 'status' | 'trackingCode'>) => Order;
   getOrder: (id: string) => Order | undefined;
   hasActiveOrders: boolean;
 }
