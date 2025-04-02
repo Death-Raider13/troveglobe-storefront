@@ -3,26 +3,40 @@ import React, { useState } from 'react';
 import { Layout } from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/use-cart';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Trash2, Plus, Minus, ShoppingBag, CreditCard, Wallet, Truck, Store } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { toast } from '@/hooks/use-toast';
+import PaymentDetails from '@/components/checkout/PaymentDetails';
 
 const CartPage = () => {
   const { items, removeItem, updateQuantity, clearCart, subtotal } = useCart();
   const [deliveryMethod, setDeliveryMethod] = useState('delivery');
   const [paymentMethod, setPaymentMethod] = useState('transfer');
-  const navigate = useNavigate();
+  const [checkoutStep, setCheckoutStep] = useState('cart'); // 'cart', 'payment', 'confirmation'
   
   // Function to handle proceeding to checkout
   const handleCheckout = () => {
-    // In a real app, would navigate to checkout page with payment info
-    // For now, we'll simulate with an alert
-    alert(`Checkout with ${deliveryMethod} and ${paymentMethod} payment`);
-    // Future implementation would navigate to a payment page
+    setCheckoutStep('payment');
   };
   
-  if (items.length === 0) {
+  // Function to handle going back to cart
+  const handleBackToCart = () => {
+    setCheckoutStep('cart');
+  };
+  
+  // Function to handle order completion
+  const handleOrderComplete = () => {
+    clearCart();
+    setCheckoutStep('confirmation');
+    toast({
+      title: "Order Placed Successfully!",
+      description: "Thank you for your purchase. We'll process your order shortly.",
+    });
+  };
+  
+  if (items.length === 0 && checkoutStep === 'cart') {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-12 text-center">
@@ -35,6 +49,46 @@ const CartPage = () => {
             <Button asChild>
               <Link to="/">Start Shopping</Link>
             </Button>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+  
+  if (checkoutStep === 'confirmation') {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-12 text-center">
+          <div className="max-w-md mx-auto">
+            <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle2 className="h-10 w-10 text-green-600" />
+            </div>
+            <h1 className="text-3xl font-bold mb-4">Order Placed Successfully!</h1>
+            <p className="mb-6 text-muted-foreground">
+              {paymentMethod === 'transfer' 
+                ? "We'll verify your payment and process your order soon."
+                : "Your order will be ready for pickup/delivery as selected."}
+            </p>
+            <Button asChild>
+              <Link to="/">Continue Shopping</Link>
+            </Button>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+  
+  if (checkoutStep === 'payment') {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-12">
+          <h1 className="text-3xl font-bold mb-8">Complete Your Payment</h1>
+          <div className="max-w-md mx-auto">
+            <PaymentDetails 
+              paymentMethod={paymentMethod} 
+              onBack={handleBackToCart}
+              onComplete={handleOrderComplete}
+            />
           </div>
         </div>
       </Layout>
@@ -254,9 +308,6 @@ const CartPage = () => {
               <div className="mt-6">
                 <p className="mb-2 text-sm text-muted-foreground">We accept:</p>
                 <div className="flex space-x-3">
-                  <div className="flex items-center justify-center bg-muted rounded p-2 h-10">
-                    <CreditCard className="h-5 w-5" />
-                  </div>
                   <div className="flex items-center justify-center bg-muted rounded p-2 h-10">
                     <Wallet className="h-5 w-5" />
                     <span className="ml-1 text-xs font-medium">Transfer</span>
