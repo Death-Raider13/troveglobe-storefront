@@ -4,7 +4,7 @@ import { Layout } from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/use-cart';
 import { Link } from 'react-router-dom';
-import { Trash2, Plus, Minus, ShoppingBag, CreditCard, Wallet, Truck, Store } from 'lucide-react';
+import { Trash2, Plus, Minus, ShoppingBag, CreditCard, Wallet, Truck, Store, CheckCircle2 } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
