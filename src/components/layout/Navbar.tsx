@@ -3,11 +3,20 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ShoppingBag, Search, Menu, X, User, Package2 } from 'lucide-react';
+import { ShoppingBag, Search, Menu, X, User, Package2, ChevronDown } from 'lucide-react';
 import { useCart } from '@/hooks/use-cart';
 import { Badge } from '@/components/ui/badge';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useOrderTracking } from '@/hooks/use-order-tracking';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
+import { cn } from '@/lib/utils';
 
 const categories = [
   { name: "Women", path: "/category/women" },
@@ -15,6 +24,27 @@ const categories = [
   { name: "Accessories", path: "/category/accessories" },
   { name: "Sale", path: "/category/sale" },
 ];
+
+const subcategories = {
+  women: [
+    { name: "Dresses", path: "/category/women/dresses" },
+    { name: "Tops", path: "/category/women/tops" },
+    { name: "Bottoms", path: "/category/women/bottoms" },
+    { name: "Knitwear", path: "/category/women/knitwear" }
+  ],
+  men: [
+    { name: "Shirts", path: "/category/men/shirts" },
+    { name: "Pants", path: "/category/men/pants" },
+    { name: "Outerwear", path: "/category/men/outerwear" },
+    { name: "Knitwear", path: "/category/men/knitwear" }
+  ],
+  accessories: [
+    { name: "Bags", path: "/category/accessories/bags" },
+    { name: "Jewelry", path: "/category/accessories/jewelry" },
+    { name: "Scarves", path: "/category/accessories/scarves" },
+    { name: "Hats", path: "/category/accessories/hats" }
+  ]
+};
 
 export const Navbar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -25,7 +55,7 @@ export const Navbar = () => {
   
   const toggleSearch = () => setSearchOpen(!searchOpen);
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
-  
+
   return (
     <nav className="sticky top-0 z-40 w-full bg-background shadow-sm">
       <div className="container mx-auto py-4">
@@ -37,16 +67,73 @@ export const Navbar = () => {
           
           {/* Desktop Navigation */}
           {!isMobile && (
-            <div className="hidden space-x-6 md:flex">
-              {categories.map((category) => (
-                <Link 
-                  key={category.name} 
-                  to={category.path} 
-                  className="nav-link"
-                >
-                  {category.name}
-                </Link>
-              ))}
+            <div className="hidden space-x-2 md:flex items-center">
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>Women</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid gap-3 p-4 w-[200px]">
+                        {subcategories.women.map((item) => (
+                          <li key={item.name}>
+                            <NavigationMenuLink asChild>
+                              <Link 
+                                to={item.path}
+                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                              >
+                                <div className="text-sm font-medium leading-none">{item.name}</div>
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>Men</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid gap-3 p-4 w-[200px]">
+                        {subcategories.men.map((item) => (
+                          <li key={item.name}>
+                            <NavigationMenuLink asChild>
+                              <Link 
+                                to={item.path}
+                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                              >
+                                <div className="text-sm font-medium leading-none">{item.name}</div>
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>Accessories</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid gap-3 p-4 w-[200px]">
+                        {subcategories.accessories.map((item) => (
+                          <li key={item.name}>
+                            <NavigationMenuLink asChild>
+                              <Link 
+                                to={item.path}
+                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                              >
+                                <div className="text-sm font-medium leading-none">{item.name}</div>
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <Link to="/category/sale" className="nav-link">
+                      Sale
+                    </Link>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
             </div>
           )}
           
@@ -116,14 +203,25 @@ export const Navbar = () => {
         {isMobile && mobileMenuOpen && (
           <div className="mt-4 space-y-2 animate-fade-in">
             {categories.map((category) => (
-              <Link 
-                key={category.name} 
-                to={category.path} 
-                className="block py-2 px-4 hover:bg-accent/10 rounded-md"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {category.name}
-              </Link>
+              <div key={category.name} className="space-y-2">
+                <Link 
+                  to={category.path} 
+                  className="block py-2 px-4 hover:bg-accent/10 rounded-md font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {category.name}
+                </Link>
+                {category.name !== "Sale" && subcategories[category.name.toLowerCase() as keyof typeof subcategories]?.map((subItem) => (
+                  <Link 
+                    key={subItem.name}
+                    to={subItem.path}
+                    className="block py-1 px-8 hover:bg-accent/10 rounded-md text-sm"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {subItem.name}
+                  </Link>
+                ))}
+              </div>
             ))}
             <Link 
               to="/track"

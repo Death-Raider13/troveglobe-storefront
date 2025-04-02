@@ -4,6 +4,7 @@ import { Layout } from '@/components/layout/Layout';
 import { HeroSection } from '@/components/home/HeroSection';
 import { CategorySection } from '@/components/home/CategorySection';
 import { ProductGrid } from '@/components/products/ProductGrid';
+import { MissionVisionSection } from '@/components/home/MissionVisionSection';
 import { getFeaturedProducts } from '@/data/products';
 
 const Index = () => {
@@ -34,6 +35,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+      
+      {/* Mission and Vision Section */}
+      <MissionVisionSection />
     </Layout>
   );
 };
