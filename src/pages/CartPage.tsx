@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Layout } from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/use-cart';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Trash2, Plus, Minus, ShoppingBag, CreditCard, Wallet, Truck, Store } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
@@ -11,6 +11,16 @@ import { Label } from '@/components/ui/label';
 const CartPage = () => {
   const { items, removeItem, updateQuantity, clearCart, subtotal } = useCart();
   const [deliveryMethod, setDeliveryMethod] = useState('delivery');
+  const [paymentMethod, setPaymentMethod] = useState('transfer');
+  const navigate = useNavigate();
+  
+  // Function to handle proceeding to checkout
+  const handleCheckout = () => {
+    // In a real app, would navigate to checkout page with payment info
+    // For now, we'll simulate with an alert
+    alert(`Checkout with ${deliveryMethod} and ${paymentMethod} payment`);
+    // Future implementation would navigate to a payment page
+  };
   
   if (items.length === 0) {
     return (
@@ -99,17 +109,17 @@ const CartPage = () => {
                         <td className="p-4 text-right">
                           {item.discount > 0 ? (
                             <div>
-                              <span className="font-medium">${itemPrice.toFixed(2)}</span>
+                              <span className="font-medium">₦{itemPrice.toFixed(2)}</span>
                               <div className="text-xs text-muted-foreground line-through">
-                                ${item.price.toFixed(2)}
+                                ₦{item.price.toFixed(2)}
                               </div>
                             </div>
                           ) : (
-                            <span className="font-medium">${item.price.toFixed(2)}</span>
+                            <span className="font-medium">₦{item.price.toFixed(2)}</span>
                           )}
                         </td>
                         <td className="p-4 text-right font-medium">
-                          ${(itemPrice * item.quantity).toFixed(2)}
+                          ₦{(itemPrice * item.quantity).toFixed(2)}
                         </td>
                         <td className="p-4 text-right">
                           <Button 
@@ -163,7 +173,7 @@ const CartPage = () => {
                       <div>
                         <div>Home Delivery</div>
                         <div className="text-xs text-muted-foreground">
-                          Delivery within 24-48 hours
+                          Delivery within 72 hours
                         </div>
                       </div>
                     </Label>
@@ -176,7 +186,43 @@ const CartPage = () => {
                       <div>
                         <div>Store Pickup</div>
                         <div className="text-xs text-muted-foreground">
-                          Ready for pickup in 2 hours
+                          Ready for pickup in 48 hours
+                        </div>
+                      </div>
+                    </Label>
+                  </div>
+                </RadioGroup>
+              </div>
+              
+              {/* Payment Method Selection */}
+              <div className="mb-6">
+                <h3 className="font-medium mb-3">Payment Method</h3>
+                <RadioGroup 
+                  value={paymentMethod} 
+                  onValueChange={setPaymentMethod}
+                  className="gap-3"
+                >
+                  <div className="flex items-center space-x-2 border rounded-md p-3 hover:bg-muted/50 cursor-pointer">
+                    <RadioGroupItem value="transfer" id="transfer" />
+                    <Label htmlFor="transfer" className="flex items-center cursor-pointer">
+                      <Wallet className="h-4 w-4 mr-2" />
+                      <div>
+                        <div>Bank Transfer</div>
+                        <div className="text-xs text-muted-foreground">
+                          Pay via bank transfer
+                        </div>
+                      </div>
+                    </Label>
+                  </div>
+                  
+                  <div className="flex items-center space-x-2 border rounded-md p-3 hover:bg-muted/50 cursor-pointer">
+                    <RadioGroupItem value="onspot" id="onspot" />
+                    <Label htmlFor="onspot" className="flex items-center cursor-pointer">
+                      <Wallet className="h-4 w-4 mr-2" />
+                      <div>
+                        <div>On-spot Payment</div>
+                        <div className="text-xs text-muted-foreground">
+                          Pay when you receive your order
                         </div>
                       </div>
                     </Label>
@@ -187,7 +233,7 @@ const CartPage = () => {
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Subtotal</span>
-                  <span className="font-medium">${subtotal.toFixed(2)}</span>
+                  <span className="font-medium">₦{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Shipping</span>
@@ -196,12 +242,12 @@ const CartPage = () => {
                 <div className="border-t pt-3">
                   <div className="flex justify-between font-bold">
                     <span>Total</span>
-                    <span>${subtotal.toFixed(2)}</span>
+                    <span>₦{subtotal.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
               
-              <Button className="w-full" size="lg">
+              <Button className="w-full" size="lg" onClick={handleCheckout}>
                 Proceed to Checkout
               </Button>
               
