@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ShoppingBag, Search, Menu, X, User } from 'lucide-react';
+import { ShoppingBag, Search, Menu, X, User, Package2 } from 'lucide-react';
 import { useCart } from '@/hooks/use-cart';
 import { Badge } from '@/components/ui/badge';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useOrderTracking } from '@/hooks/use-order-tracking';
 
 const categories = [
   { name: "Women", path: "/category/women" },
@@ -19,6 +20,7 @@ export const Navbar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { items } = useCart();
+  const { hasActiveOrders } = useOrderTracking();
   const isMobile = useIsMobile();
   
   const toggleSearch = () => setSearchOpen(!searchOpen);
@@ -53,6 +55,19 @@ export const Navbar = () => {
             {/* Search */}
             <Button variant="ghost" size="icon" onClick={toggleSearch} className="relative">
               <Search className="h-5 w-5" />
+            </Button>
+            
+            {/* Order Tracking */}
+            <Button variant="ghost" size="icon" asChild className="relative">
+              <Link to="/track">
+                <Package2 className="h-5 w-5" />
+                {hasActiveOrders && (
+                  <Badge 
+                    className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full p-0 text-xs" 
+                    variant="secondary"
+                  />
+                )}
+              </Link>
             </Button>
             
             {/* Account */}
@@ -110,6 +125,13 @@ export const Navbar = () => {
                 {category.name}
               </Link>
             ))}
+            <Link 
+              to="/track"
+              className="block py-2 px-4 hover:bg-accent/10 rounded-md"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Track Order
+            </Link>
             <Link 
               to="/auth" 
               className="block py-2 px-4 hover:bg-accent/10 rounded-md"

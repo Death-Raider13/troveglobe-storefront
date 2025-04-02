@@ -1,20 +1,23 @@
-
 import React, { useState } from 'react';
 import { Layout } from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/use-cart';
-import { Link } from 'react-router-dom';
-import { Trash2, Plus, Minus, ShoppingBag, CreditCard, Wallet, Truck, Store, CheckCircle2 } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Trash2, Plus, Minus, ShoppingBag, Wallet, Truck, Store, CheckCircle2 } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
 import PaymentDetails from '@/components/checkout/PaymentDetails';
+import ShippingDetails from '@/components/checkout/ShippingDetails';
+import { useOrderTracking } from '@/hooks/use-order-tracking';
 
 const CartPage = () => {
   const { items, removeItem, updateQuantity, clearCart, subtotal } = useCart();
+  const { addOrder } = useOrderTracking();
   const [deliveryMethod, setDeliveryMethod] = useState('delivery');
   const [paymentMethod, setPaymentMethod] = useState('transfer');
-  const [checkoutStep, setCheckoutStep] = useState('cart'); // 'cart', 'payment', 'confirmation'
+  const [checkoutStep, setCheckoutStep] = useState('cart'); // 'cart', 'payment', 'shipping', 'confirmation'
+  const navigate = useNavigate();
   
   // Function to handle proceeding to checkout
   const handleCheckout = () => {
@@ -26,14 +29,33 @@ const CartPage = () => {
     setCheckoutStep('cart');
   };
   
+  // Function to handle proceeding to shipping details
+  const handlePaymentComplete = () => {
+    setCheckoutStep('shipping');
+  };
+  
   // Function to handle order completion
-  const handleOrderComplete = () => {
+  const handleOrderComplete = (shippingDetails) => {
+    // Create the order in our tracking system
+    const newOrder = addOrder({
+      items: [...items],
+      deliveryMethod,
+      paymentMethod,
+      shippingDetails,
+      totalAmount: subtotal,
+    });
+    
+    // Clear the cart
     clearCart();
-    setCheckoutStep('confirmation');
+    
+    // Show success toast
     toast({
       title: "Order Placed Successfully!",
-      description: "Thank you for your purchase. We'll process your order shortly.",
+      description: "Thank you for your purchase. You can track your order status.",
     });
+    
+    // Navigate to the order tracking page
+    navigate(`/track?code=${newOrder.trackingCode}`);
   };
   
   if (items.length === 0 && checkoutStep === 'cart') {
@@ -55,23 +77,17 @@ const CartPage = () => {
     );
   }
   
-  if (checkoutStep === 'confirmation') {
+  if (checkoutStep === 'shipping') {
     return (
       <Layout>
-        <div className="container mx-auto px-4 py-12 text-center">
+        <div className="container mx-auto px-4 py-12">
+          <h1 className="text-3xl font-bold mb-8">Shipping Information</h1>
           <div className="max-w-md mx-auto">
-            <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CheckCircle2 className="h-10 w-10 text-green-600" />
-            </div>
-            <h1 className="text-3xl font-bold mb-4">Order Placed Successfully!</h1>
-            <p className="mb-6 text-muted-foreground">
-              {paymentMethod === 'transfer' 
-                ? "We'll verify your payment and process your order soon."
-                : "Your order will be ready for pickup/delivery as selected."}
-            </p>
-            <Button asChild>
-              <Link to="/">Continue Shopping</Link>
-            </Button>
+            <ShippingDetails 
+              deliveryMethod={deliveryMethod}
+              onBack={() => setCheckoutStep('payment')}
+              onComplete={handleOrderComplete}
+            />
           </div>
         </div>
       </Layout>
@@ -87,7 +103,7 @@ const CartPage = () => {
             <PaymentDetails 
               paymentMethod={paymentMethod} 
               onBack={handleBackToCart}
-              onComplete={handleOrderComplete}
+              onComplete={handlePaymentComplete}
             />
           </div>
         </div>
