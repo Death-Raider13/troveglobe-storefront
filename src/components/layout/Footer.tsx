@@ -13,7 +13,9 @@ import {
   MapPin,
   Linkedin,
   Youtube,
-  MessageCircle
+  MessageCircle,
+  FileText,
+  ShieldCheck
 } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { 
@@ -141,11 +143,27 @@ export const Footer = () => {
                 </Link>
               </li>
             </ul>
+
+            <h3 className="text-lg font-semibold mb-4 mt-6">Legal</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/privacy" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground group">
+                  <FileText className="h-4 w-4 transition-transform group-hover:scale-110" />
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground group">
+                  <ShieldCheck className="h-4 w-4 transition-transform group-hover:scale-110" />
+                  Terms of Service
+                </Link>
+              </li>
+            </ul>
           </div>
           
-          {/* Enhanced Contact Us Section */}
+          {/* Contact Us Section with Shipping & Returns */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+            <h3 className="text-lg font-semibold mb-4">Contact & Support</h3>
             <ul className="space-y-3 text-sm">
               <li>
                 <Popover>
@@ -240,6 +258,12 @@ export const Footer = () => {
                     </div>
                   </PopoverContent>
                 </Popover>
+              </li>
+              <li>
+                <Link to="/shipping" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground group">
+                  <Truck className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  Shipping & Returns
+                </Link>
               </li>
             </ul>
           </div>

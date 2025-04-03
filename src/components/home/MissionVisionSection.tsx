@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const MissionVisionSection = () => {
   const [hoverMission, setHoverMission] = useState(false);
@@ -30,6 +31,8 @@ export const MissionVisionSection = () => {
             <motion.div 
               className="mt-6 flex items-center text-primary hover:text-primary/80 font-medium cursor-pointer group"
               whileHover={{ x: 5 }}
+              as={Link}
+              to="/craftsmanship"
             >
               Learn more about our craftsmanship
               <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
@@ -55,6 +58,8 @@ export const MissionVisionSection = () => {
             <motion.div 
               className="mt-6 flex items-center text-purple-600 hover:text-purple-500 font-medium cursor-pointer group"
               whileHover={{ x: 5 }}
+              as={Link}
+              to="/sustainability"
             >
               Discover our sustainability efforts
               <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />

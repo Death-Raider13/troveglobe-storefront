@@ -15,6 +15,10 @@ import OrderTrackingPage from "./pages/OrderTrackingPage";
 import ShippingPage from "./pages/ShippingPage";
 import FAQPage from "./pages/FAQPage";
 import NotFound from "./pages/NotFound";
+import PrivacyPage from "./pages/PrivacyPage";
+import TermsPage from "./pages/TermsPage";
+import CraftsmanshipPage from "./pages/CraftsmanshipPage";
+import SustainabilityPage from "./pages/SustainabilityPage";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +39,10 @@ const App = () => (
               <Route path="/track" element={<OrderTrackingPage />} />
               <Route path="/shipping" element={<ShippingPage />} />
               <Route path="/faq" element={<FAQPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/terms" element={<TermsPage />} />
+              <Route path="/craftsmanship" element={<CraftsmanshipPage />} />
+              <Route path="/sustainability" element={<SustainabilityPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
