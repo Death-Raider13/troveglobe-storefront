@@ -28,14 +28,14 @@ export const MissionVisionSection = () => {
               We believe in fair trade practices, ensuring that every item in our collection not only brings joy to our customers but also contributes positively to the lives of the skilled artisans who create them.
             </p>
             
-            <motion.div 
-              className="mt-6 flex items-center text-primary hover:text-primary/80 font-medium cursor-pointer group"
-              whileHover={{ x: 5 }}
-              as={Link}
-              to="/craftsmanship"
-            >
-              Learn more about our craftsmanship
-              <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
+            <motion.div whileHover={{ x: 5 }}>
+              <Link 
+                to="/craftsmanship"
+                className="mt-6 flex items-center text-primary hover:text-primary/80 font-medium cursor-pointer group"
+              >
+                Learn more about our craftsmanship
+                <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
+              </Link>
             </motion.div>
           </motion.div>
           
@@ -55,14 +55,14 @@ export const MissionVisionSection = () => {
               As we grow, we aim to expand our community of artisans, increase sustainable practices throughout our supply chain, and continue to innovate in the world of handcrafted fashion and accessories, making unique pieces accessible to discerning customers worldwide.
             </p>
             
-            <motion.div 
-              className="mt-6 flex items-center text-purple-600 hover:text-purple-500 font-medium cursor-pointer group"
-              whileHover={{ x: 5 }}
-              as={Link}
-              to="/sustainability"
-            >
-              Discover our sustainability efforts
-              <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
+            <motion.div whileHover={{ x: 5 }}>
+              <Link 
+                to="/sustainability"
+                className="mt-6 flex items-center text-purple-600 hover:text-purple-500 font-medium cursor-pointer group"
+              >
+                Discover our sustainability efforts
+                <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
+              </Link>
             </motion.div>
           </motion.div>
         </div>
@@ -70,3 +70,4 @@ export const MissionVisionSection = () => {
     </section>
   );
 };
+
