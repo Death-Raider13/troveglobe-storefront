@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Layout } from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
@@ -8,7 +9,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
 import PaymentDetails from '@/components/checkout/PaymentDetails';
-import ShippingDetails from '@/components/checkout/ShippingDetails';
+import { ShippingDetails } from '@/components/checkout/ShippingDetails';
 import { useOrderTracking } from '@/hooks/use-order-tracking';
 
 const CartPage = () => {
