@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/layout/Layout';
@@ -80,6 +79,37 @@ const ProductPage = () => {
             </div>
             
             <p className="text-muted-foreground mb-6">{product.description}</p>
+            
+            {/* Product Specifications */}
+            <div className="mb-6 p-4 bg-muted/30 rounded-lg">
+              <h3 className="font-medium mb-3">Product Specifications</h3>
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div>
+                  <span className="text-muted-foreground">Size:</span>
+                  <span className="ml-2 font-medium">Medium</span>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">Color:</span>
+                  <span className="ml-2 font-medium">Blue</span>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">Material:</span>
+                  <span className="ml-2 font-medium">Cotton</span>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">Condition:</span>
+                  <span className="ml-2 font-medium">New</span>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">Weight:</span>
+                  <span className="ml-2 font-medium">0.5 kg</span>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">Dimensions:</span>
+                  <span className="ml-2 font-medium">30x25x5 cm</span>
+                </div>
+              </div>
+            </div>
             
             <div className="mb-6">
               <h3 className="font-medium mb-2">Quantity</h3>

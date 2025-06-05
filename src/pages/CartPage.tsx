@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Layout } from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
@@ -17,11 +16,22 @@ const CartPage = () => {
   const { addOrder } = useOrderTracking();
   const [deliveryMethod, setDeliveryMethod] = useState('delivery');
   const [paymentMethod, setPaymentMethod] = useState('transfer');
-  const [checkoutStep, setCheckoutStep] = useState('cart'); // 'cart', 'payment', 'shipping', 'confirmation'
+  const [checkoutStep, setCheckoutStep] = useState('cart');
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // In a real app, this would come from auth context
   const navigate = useNavigate();
   
-  // Function to handle proceeding to checkout
+  // Function to check authentication and handle checkout
   const handleCheckout = () => {
+    // Check if user is authenticated (this is a mock check)
+    const userToken = localStorage.getItem('userToken');
+    if (!userToken) {
+      toast({
+        title: "Authentication Required",
+        description: "Please sign in or sign up to continue with checkout.",
+      });
+      navigate('/auth');
+      return;
+    }
     setCheckoutStep('payment');
   };
   
@@ -59,7 +69,7 @@ const CartPage = () => {
     if (newOrder && newOrder.trackingCode) {
       navigate(`/track?code=${newOrder.trackingCode}`);
     } else {
-      navigate('/track'); // Fallback if tracking code is not available
+      navigate('/track');
     }
   };
   
@@ -157,6 +167,11 @@ const CartPage = () => {
                                   {item.discount}% OFF
                                 </div>
                               )}
+                              {/* Product Specifications */}
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>Size: Medium | Color: Blue</div>
+                                <div>Material: Cotton | Condition: New</div>
+                              </div>
                             </div>
                           </div>
                         </td>

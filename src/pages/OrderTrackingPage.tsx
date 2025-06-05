@@ -223,7 +223,7 @@ const OrderTrackingPage = () => {
                             <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
                             <span className="text-sm">
                               {order.deliveryMethod === 'delivery'
-                                ? 'Delivery within 72 hours'
+                                ? 'Delivery within 72 hours after shipping'
                                 : 'Ready for pickup in 48 hours'}
                             </span>
                           </div>
