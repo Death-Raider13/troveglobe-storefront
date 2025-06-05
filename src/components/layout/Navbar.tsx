@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ShoppingBag, Search, Menu, X, User, Package2, ChevronDown, Home } from 'lucide-react';
+import { ShoppingBag, Search, Menu, X, User, Package2, ChevronDown, Home, Store } from 'lucide-react';
 import { useCart } from '@/hooks/use-cart';
 import { Badge } from '@/components/ui/badge';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -20,6 +19,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
 } from "@/components/ui/dropdown-menu";
+import { SellGoodsDialog } from '@/components/sell/SellGoodsDialog';
 
 const categories = [
   { name: "Women", path: "/category/women" },
@@ -121,6 +121,19 @@ export const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
+
+            {/* Sell Goods Button */}
+            <div className="hidden md:flex">
+              <SellGoodsDialog>
+                <Button 
+                  variant="outline" 
+                  className="flex items-center gap-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 hover:from-green-500/30 hover:to-emerald-500/30 transition-all duration-300 text-green-700 hover:text-green-800"
+                >
+                  <Store className="h-4 w-4" />
+                  Sell Goods
+                </Button>
+              </SellGoodsDialog>
+            </div>
           </div>
           
           {/* Logo */}
@@ -201,6 +214,14 @@ export const Navbar = () => {
               <Home className="h-4 w-4 mr-2" />
               Home
             </Link>
+            
+            {/* Sell Goods for Mobile */}
+            <SellGoodsDialog>
+              <div className="flex items-center py-2 px-4 hover:bg-accent/10 rounded-md font-medium bg-gradient-to-r from-green-500/10 to-emerald-500/10">
+                <Store className="h-4 w-4 mr-2 text-green-600" />
+                <span className="text-green-700">Sell Goods</span>
+              </div>
+            </SellGoodsDialog>
             
             {categories.map((category) => (
               <div key={category.name} className="space-y-2">
