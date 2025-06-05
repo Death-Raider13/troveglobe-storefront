@@ -20,6 +20,7 @@ import TermsPage from "./pages/TermsPage";
 import CraftsmanshipPage from "./pages/CraftsmanshipPage";
 import SustainabilityPage from "./pages/SustainabilityPage";
 import SellGoodsPage from "./pages/SellGoodsPage";
+import AdminPage from "./pages/AdminPage";
 
 const queryClient = new QueryClient();
 
