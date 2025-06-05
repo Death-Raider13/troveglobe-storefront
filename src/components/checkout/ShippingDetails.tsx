@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -43,12 +44,12 @@ const formSchema = z.object({
 })
 
 interface ShippingDetailsProps {
-  onNext: (data: any) => void;
-  onPrevious: () => void;
+  deliveryMethod: string;
+  onBack: () => void;
+  onComplete: (shippingDetails: any) => void;
 }
 
-export const ShippingDetails = ({ onNext, onPrevious }: ShippingDetailsProps) => {
-  const [deliveryMethod, setDeliveryMethod] = useState<'delivery' | 'pickup'>('delivery');
+export const ShippingDetails = ({ deliveryMethod, onBack, onComplete }: ShippingDetailsProps) => {
   const [selectedStore, setSelectedStore] = useState<any>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -75,7 +76,7 @@ export const ShippingDetails = ({ onNext, onPrevious }: ShippingDetailsProps) =>
       ...(deliveryMethod === 'pickup' && selectedStore ? { pickupStore: selectedStore } : {})
     };
     
-    onNext(shippingData);
+    onComplete(shippingData);
   };
 
   return (
@@ -83,44 +84,8 @@ export const ShippingDetails = ({ onNext, onPrevious }: ShippingDetailsProps) =>
       <div>
         <h2 className="text-2xl font-bold mb-2">Shipping Details</h2>
         <p className="text-muted-foreground">
-          Choose your delivery method and provide the necessary details.
+          Please provide your details for {deliveryMethod === 'pickup' ? 'store pickup' : 'home delivery'}.
         </p>
-      </div>
-
-      {/* Delivery Method Selection */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold">Delivery Method</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card 
-            className={`cursor-pointer transition-all hover:shadow-md ${
-              deliveryMethod === 'delivery' ? 'ring-2 ring-primary bg-primary/5' : ''
-            }`}
-            onClick={() => setDeliveryMethod('delivery')}
-          >
-            <CardHeader>
-              <CardTitle>Home Delivery</CardTitle>
-              <CardDescription>Delivered to your doorstep.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              Fast and reliable delivery to your provided address.
-            </CardContent>
-          </Card>
-          
-          <Card 
-            className={`cursor-pointer transition-all hover:shadow-md ${
-              deliveryMethod === 'pickup' ? 'ring-2 ring-primary bg-primary/5' : ''
-            }`}
-            onClick={() => setDeliveryMethod('pickup')}
-          >
-            <CardHeader>
-              <CardTitle>Store Pickup</CardTitle>
-              <CardDescription>Pick up from our store.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              Convenient pickup at a store location near you.
-            </CardContent>
-          </Card>
-        </div>
       </div>
 
       {/* Store Pickup Location Selection */}
@@ -238,15 +203,15 @@ export const ShippingDetails = ({ onNext, onPrevious }: ShippingDetailsProps) =>
           />
 
           <div className="flex flex-col sm:flex-row gap-4 pt-6">
-            <Button type="button" variant="outline" onClick={onPrevious} className="flex-1">
-              Back to Cart
+            <Button type="button" variant="outline" onClick={onBack} className="flex-1">
+              Back to Payment
             </Button>
             <Button 
               type="submit" 
               className="flex-1"
               disabled={deliveryMethod === 'pickup' && !selectedStore}
             >
-              Continue to Payment
+              Complete Order
             </Button>
           </div>
         </form>
