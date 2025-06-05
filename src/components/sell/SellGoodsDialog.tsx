@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Dialog,
   DialogContent,
@@ -21,14 +22,15 @@ interface SellGoodsDialogProps {
 export const SellGoodsDialog = ({ children }: SellGoodsDialogProps) => {
   const [hasAccepted, setHasAccepted] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
+  const navigate = useNavigate();
 
   const handleFirstTimeClick = () => {
     const hasSeenTerms = localStorage.getItem('sellGoodsTermsAccepted');
     if (!hasSeenTerms) {
       setShowTerms(true);
     } else {
-      // Redirect to sell goods page (would be implemented later)
-      console.log('Redirecting to sell goods page');
+      // Redirect to sell goods page
+      navigate('/sell-goods');
     }
   };
 
@@ -37,7 +39,7 @@ export const SellGoodsDialog = ({ children }: SellGoodsDialogProps) => {
       localStorage.setItem('sellGoodsTermsAccepted', 'true');
       setShowTerms(false);
       // Redirect to sell goods page
-      console.log('Terms accepted, redirecting to sell goods page');
+      navigate('/sell-goods');
     }
   };
 

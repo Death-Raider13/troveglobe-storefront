@@ -19,6 +19,7 @@ import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
 import CraftsmanshipPage from "./pages/CraftsmanshipPage";
 import SustainabilityPage from "./pages/SustainabilityPage";
+import SellGoodsPage from "./pages/SellGoodsPage";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ const App = () => (
               <Route path="/terms" element={<TermsPage />} />
               <Route path="/craftsmanship" element={<CraftsmanshipPage />} />
               <Route path="/sustainability" element={<SustainabilityPage />} />
+              <Route path="/sell-goods" element={<SellGoodsPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
