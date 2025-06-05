@@ -17,6 +17,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { toast } from 'sonner';
+import { useAuth } from '@/hooks/use-auth';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
@@ -40,6 +41,7 @@ export const SignUpForm = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { register } = useAuth();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -48,21 +50,21 @@ export const SignUpForm = () => {
       email: '',
       password: '',
       confirmPassword: '',
-      terms: true, // Changed from false to true to match the schema requirement
+      terms: true,
     },
   });
 
   const onSubmit = async (values: FormValues) => {
     setIsLoading(true);
     try {
-      // In a real app, you would register the user with your backend here
-      console.log('Sign up values:', values);
+      const success = await register(values.name, values.email, values.password);
       
-      // Simulate a successful registration
-      setTimeout(() => {
+      if (success) {
         toast.success("Account created successfully!");
         navigate('/');
-      }, 1500);
+      } else {
+        toast.error("Failed to create account. Please try again.");
+      }
     } catch (error) {
       toast.error("Failed to create account. Please try again.");
       console.error(error);

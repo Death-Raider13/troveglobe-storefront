@@ -1,7 +1,9 @@
+
 import React, { useState } from 'react';
 import { Layout } from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/use-cart';
+import { useAuth } from '@/hooks/use-auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { Trash2, Plus, Minus, ShoppingBag, Wallet, Truck, Store, CheckCircle2 } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -13,18 +15,16 @@ import { useOrderTracking } from '@/hooks/use-order-tracking';
 
 const CartPage = () => {
   const { items, removeItem, updateQuantity, clearCart, subtotal } = useCart();
+  const { isAuthenticated } = useAuth();
   const { addOrder } = useOrderTracking();
   const [deliveryMethod, setDeliveryMethod] = useState('delivery');
   const [paymentMethod, setPaymentMethod] = useState('transfer');
   const [checkoutStep, setCheckoutStep] = useState('cart');
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // In a real app, this would come from auth context
   const navigate = useNavigate();
   
   // Function to check authentication and handle checkout
   const handleCheckout = () => {
-    // Check if user is authenticated (this is a mock check)
-    const userToken = localStorage.getItem('userToken');
-    if (!userToken) {
+    if (!isAuthenticated) {
       toast({
         title: "Authentication Required",
         description: "Please sign in or sign up to continue with checkout.",

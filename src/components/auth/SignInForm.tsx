@@ -17,6 +17,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { toast } from 'sonner';
+import { useAuth } from '@/hooks/use-auth';
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email" }),
@@ -29,6 +30,7 @@ export const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -41,14 +43,14 @@ export const SignInForm = () => {
   const onSubmit = async (values: FormValues) => {
     setIsLoading(true);
     try {
-      // In a real app, you would authenticate with your backend here
-      console.log('Sign in values:', values);
+      const success = await login(values.email, values.password);
       
-      // Simulate a successful sign-in
-      setTimeout(() => {
+      if (success) {
         toast.success("Signed in successfully!");
         navigate('/');
-      }, 1000);
+      } else {
+        toast.error("Failed to sign in. Please check your credentials.");
+      }
     } catch (error) {
       toast.error("Failed to sign in. Please check your credentials.");
       console.error(error);
